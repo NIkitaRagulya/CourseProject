@@ -41,6 +41,21 @@ $(document).ready(() => {
     });
   })
 
+  $('#admin_selected_users').click(() => {
+    let userIds = $('.user-checkbox:checked').toArray().map(a => a.id);
+    $.ajax({
+      url: '/online_users/set_admin',
+      method: 'put',
+      data: {
+        user_ids: userIds
+      },
+      success: (data) => {
+        // console.log(data)
+        window.location.reload();
+      }
+    });
+  })
+
   $('#delete_selected_users').click(() => {
     let userIds = $('.user-checkbox:checked').toArray().map(a => a.id);
     $.ajax({

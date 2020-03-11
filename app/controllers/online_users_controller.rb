@@ -20,6 +20,14 @@ class OnlineUsersController < ApplicationController
     render json: { success: 'successfully removed users' }
   end
 
+  def set_admin
+    User.where(id: params[:user_ids]).each do |user|
+      user.remove_role :user
+      user.add_role :admin
+    end
+    render json: { success: 'successfully removed users' }
+  end
+
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)

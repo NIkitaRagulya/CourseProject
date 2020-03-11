@@ -1,8 +1,15 @@
 class User < ApplicationRecord
+  rolify
+  after_create :assign_default_role
+
   ONLINE_PERIOD = 1.minutes
   has_many :posts
   scope :online, -> { where('updated_at > ?', ONLINE_PERIOD.ago) }
   scope :offline, -> { where('updated_at < ?', ONLINE_PERIOD.ago) }
+
+  def assign_default_role
+    self.add_role(:user) if self.roles.blank?
+  end
 
   def online?
     updated_at > ONLINE_PERIOD.ago

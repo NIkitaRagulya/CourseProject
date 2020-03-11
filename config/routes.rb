@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       delete :delete_users
       put :ban_users
       put :unlock_users
+      put :set_admin
     end
   end
 
