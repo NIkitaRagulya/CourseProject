@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Site</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-bold">
+        <span class="btn btn-outline-primary">
+          <% if user_signed_in? %>
+            <%= link_to 'Выйти', destroy_user_session_path, class: "p-2 text-dark" %>
+          <% else %>
+            <%= link_to 'Войти', new_user_session_path, class: "p-2 text-dark" %>
+            /
+            <%= link_to 'Зарегистрироваться', new_user_registration_path, class: "p-2 text-dark" %>
+          <% end %>
+        </span>
+      </h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <% if user_signed_in? %>
+        <span ><%= link_to "Posts", posts_path, :class => 'btn btn-outline-primary'  %></span>
+        <span ><%= link_to "Main page", home_path, :class => 'btn btn-outline-primary'  %></span>
+      </nav>
+      <span ><%= link_to "Add post", new_post_path, class: "btn btn-success" %></span>
+      <% else %>
+      <% end %>
+    </div>
+    
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:notice] %>
+      </div>
+    <% elsif flash[:error] %>
+      <div class="alert alert-error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:error] %>
+    </div>
+    <% elsif flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+    </div>
+    <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

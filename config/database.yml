@@ -1,0 +1,18 @@
+default: &defaults
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  reconnect: true
+  pool: 5
+
+development: &development
+  <<: *defaults
+  database: site_development
+  username: nikitaragulia
+  password:
+
+test: &test
+  <<: *defaults
+  database: site_test
+  username: nikitaragulia
+  password:
