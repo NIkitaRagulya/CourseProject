@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include UserOath
+
   rolify
   after_create :assign_default_role
 
@@ -22,6 +24,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :trackable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:facebook]
+
+
+  has_many :authorizations
+
+  validates :email,    presence: true
+  validates :password, presence: true
 
 end
