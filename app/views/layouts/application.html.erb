@@ -10,20 +10,18 @@
   <body>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-bold">
-        <span class="btn btn-outline-primary">
           <% if user_signed_in? %>
-            <%= link_to 'Выйти', destroy_user_session_path, class: "p-2 text-dark" %>
+            <span ><%= link_to "Sign out", destroy_user_session_path, class: 'btn btn-outline-primary' %></span>
           <% else %>
-            <%= link_to 'Войти', new_user_session_path, class: "p-2 text-dark" %>
+            <span ><%= link_to 'Войти', new_user_session_path, class: 'btn btn-outline-primary' %></span>
             /
-            <%= link_to 'Зарегистрироваться', new_user_registration_path, class: "p-2 text-dark" %>
+            <span ><%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-outline-primary' %></span>
           <% end %>
-        </span>
       </h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <% if user_signed_in? %>
-        <span ><%= link_to "Posts", posts_path, :class => 'btn btn-outline-primary'  %></span>
-        <span ><%= link_to "Main page", home_path, :class => 'btn btn-outline-primary'  %></span>
+        <span ><%= link_to "Posts", posts_path, class: 'btn btn-outline-primary'  %></span>
+        <span ><%= link_to "Main page", home_path, class: 'btn btn-outline-primary'  %></span>
       </nav>
       <% if current_user.has_role? :admin %>
       <span ><%= link_to "Add post", new_post_path, class: "btn btn-success" %></span>

@@ -6,6 +6,7 @@ ruby '2.6.3'
 gem "rolify"
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
