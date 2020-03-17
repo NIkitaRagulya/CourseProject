@@ -4,8 +4,10 @@ class User < ApplicationRecord
   rolify
   after_create :assign_default_role
 
-  ONLINE_PERIOD = 1.minutes
   has_many :posts
+  has_many :collections
+
+  ONLINE_PERIOD = 1.minutes
   scope :online, -> { where('updated_at > ?', ONLINE_PERIOD.ago) }
   scope :offline, -> { where('updated_at < ?', ONLINE_PERIOD.ago) }
 
