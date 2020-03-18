@@ -16,4 +16,7 @@ import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 
 import '../src/css/application.scss'
+import '../src/css/forms.scss'
 import '../src/js/online_users.js'
+
+import "controllers"
