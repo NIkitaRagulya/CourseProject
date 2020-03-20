@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'collections/index'
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   get 'persons/profile'
@@ -21,5 +20,6 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :collections
+  resources :items
 
 end

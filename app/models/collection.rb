@@ -1,4 +1,5 @@
 class Collection < ApplicationRecord
+    has_many :items
 
     scope :for_user, ->(user) { where(user_id: user.id) }
 

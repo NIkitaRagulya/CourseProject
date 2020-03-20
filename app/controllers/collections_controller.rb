@@ -11,6 +11,8 @@ class CollectionsController < ApplicationController
   end
 
   def show
+    $collection = Collection.for_user(current_user).find(params[:id])
+    redirect_to items_path
   end
 
   def edit
@@ -18,7 +20,7 @@ class CollectionsController < ApplicationController
 
   def update
     if @collection.update(collection_params)
-     redirect_to @collection
+     redirect_to action: :index
     else
      render 'edit'
     end
@@ -45,7 +47,7 @@ class CollectionsController < ApplicationController
   end
 
   def collection_params
-    params.require(:collection).permit(:name, :description, :feature_image)
+    params.require(:collection).permit(:name, :topic, :description, :feature_image)
   end
 
 end
