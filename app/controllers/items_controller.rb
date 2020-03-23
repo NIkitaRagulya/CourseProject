@@ -14,6 +14,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comments = Comment.for_item(@item)
+    $item = @item.id
   end
 
   def destroy

@@ -21,5 +21,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :collections
   resources :items
+  resources :comments
 
 end
