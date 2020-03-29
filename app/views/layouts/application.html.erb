@@ -13,9 +13,9 @@
           <% if user_signed_in? %>
             <span ><%= link_to "Sign out", destroy_user_session_path, class: 'button' %></span>
           <% else %>
-            <span ><%= link_to 'Войти', new_user_session_path, class: 'btn btn-outline-primary' %></span>
-            /
-            <span ><%= link_to 'Зарегистрироваться', new_user_registration_path, class: 'btn btn-outline-primary' %></span>
+            <span ><%= link_to 'Sign in', new_user_session_path, class: 'button' %></span>
+            or
+            <span ><%= link_to 'Registration', new_user_registration_path, class: 'button' %></span>
           <% end %>
       </h5>
      
@@ -28,9 +28,10 @@
             <%= link_to "Posts", posts_path, class: 'dropdown-item'  %>
             <% if current_user && current_user.has_role?(:admin) %>
             <%= link_to "Add post", new_post_path, class: "dropdown-item" %>
+            <%= link_to "Admin panel", online_users_path, class: 'dropdown-item'  %>
             <% else %>
             <% end %>
-            <%= link_to "Main page", online_users_path, class: 'dropdown-item'  %>
+            <%= link_to "Main page", home_path, class: 'dropdown-item'  %>
             <%= link_to "Profile", collections_path, class: 'dropdown-item'  %>
           </div>
         </div>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 
   get 'persons/profile'
-  root 'posts#index', as: 'home'
+  root 'main_page#index', as: 'home'
 
   get 'persons/profile', as: 'user_root'
 
@@ -18,9 +18,19 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user do
+    resources :collections do
+      collection do
+        get :admin_index
+      end
+      resources :items 
+    end
+  end
+
   resources :posts
-  resources :collections
-  resources :items
+  resources :collections do
+    resources :items
+  end
   resources :comments
 
 end

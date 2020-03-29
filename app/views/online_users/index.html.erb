@@ -16,6 +16,7 @@
   <th>Last sign in</th>
 	<th>Created ad</th>
 	<th>Status</th>
+  <th>Prifile</th>
   </tr>
  <% @users.each do |u| %>
   <tr>
@@ -29,7 +30,8 @@
 		<% else %>
 		<span class="badge badge-pill badge-danger">Offline</span>
 		<% end %>
-  </tr>
+  </th>
+  <th><%= link_to "visit", admin_index_user_collections_path(u), class: 'button' %></th>
   <% end %>
 </table>
 

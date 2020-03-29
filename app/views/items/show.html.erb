@@ -2,18 +2,21 @@
     <h1><%= @item.name %></h1>
     <p class="lead"><%= @item.description %></p>
 </div>
+<% if user_signed_in? %>
 Comments:
 <hr>
 <%= form_for :comment, url:comments_path do |comment| %>
- <%= comment.text_field :description, class: "form-control" %><br />
- <p>
-  <%= comment.submit({:class => 'btn btn-success'}) %>
- </p>
+<%= comment.text_field :description, class: "form-control" %><br />
+<p>
+    <%= comment.submit({:class => 'btn btn-success'}) %>
+</p>
 <%end%>
-<hr>
-<% @comments.each do |comment| %>
-<div class='container'>
-<strong><%= comment.name %>:</strong>
-<%= comment.description %>
-</div>
+    <hr>
+    <% @comments.each do |comment| %>
+    <div class='container'>
+        <strong><%= comment.name %>:</strong>
+        <%= comment.description %>
+    </div>
+    <% end %>
+<% else %>
 <% end %>

@@ -1,9 +1,14 @@
 class CollectionsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_collection, except: [:index, :create, :new]
+  before_action :authenticate_user!, except: [:show, :main]
+  before_action :set_collection, except: [:index, :create, :new, :show, :main, :admin_index]
 
   def index
     @collections = Collection.for_user(current_user)
+  end
+
+  def admin_index
+    user = User.find(params[:user_id])
+    @collections = Collection.for_user(user)
   end
 
   def new
@@ -11,8 +16,7 @@ class CollectionsController < ApplicationController
   end
 
   def show
-    $collection = Collection.for_user(current_user).find(params[:id])
-    redirect_to items_path
+    redirect_to collection_items_path
   end
 
   def edit
@@ -27,12 +31,13 @@ class CollectionsController < ApplicationController
   end
 
   def create
-    @collection = Collection.new(collection_params.merge(user_id: current_user.id))
-   if @collection.save
-     redirect_to action: :index
-   else
-     render 'new'
-   end
+    
+      @collection = Collection.new(collection_params.merge(user_id: collection.user_id))
+      if @collection.save
+        redirect_to action: :index
+      else
+        render 'new'
+      end
   end
 
   def destroy

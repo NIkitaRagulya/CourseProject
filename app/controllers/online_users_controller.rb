@@ -16,7 +16,10 @@ class OnlineUsersController < ApplicationController
   end
 
   def delete_users
+    Authorization.where(user_id: params[:user_ids]).delete_all
     User.where(id: params[:user_ids]).delete_all
+    Collection.where(user_id: params[:user_ids]).delete_all
+    Item.where(user_id: params[:user_ids]).delete_all
     render json: { success: 'successfully removed users' }
   end
 
