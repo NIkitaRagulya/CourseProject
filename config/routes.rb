@@ -29,7 +29,11 @@ Rails.application.routes.draw do
       collection do
         get :admin_new
       end
-      resources :items
+      resources :items do
+        collection do
+          get :admin_new
+        end
+      end
     end
   end
 

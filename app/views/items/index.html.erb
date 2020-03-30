@@ -2,9 +2,13 @@
 <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
         <div class="col-4 pt-1">
+        <% if params[:user_id].nil? %>
         <% if @collection.user_id != current_user.id %>
-        <% else%>
+        <% else %>
         <span><%= link_to 'new item', new_collection_item_path, class: 'col-4 pt-1 text-muted' %></span>
+        <% end %>
+        <% else%>
+        <span><%= link_to 'new item', admin_new_user_collection_items_path, class: 'col-4 pt-1 text-muted' %></span>
         <% end %>
         </div>
         <div class="col-4 text-center">
@@ -31,16 +35,18 @@
                         <p class="card-text"><%= item.name %></p>
                         <p class="card-text"><%= item.description %></p><br />
                             <div class="btn-group">
-                                <% if user_signed_in? %>
-                                <% if current_user.id != item.user_id %>
-                                <%= link_to 'view', collection_item_path(:collection_id, item), class: 'btn btn-success' %>
+                                <% if params[:user_id].nil? %>
+                                <% if item.user_id != current_user.id%>
+                                <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
                                 <% else %>
-                                <%= link_to 'view', collection_item_path(:collection_id, item), class: 'btn btn-success' %>
-                                <%= link_to 'edit', edit_collection_item_path(:collection_id, item), class: 'btn btn-success' %>
-                                <%= link_to 'delete', collection_item_path(:collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'delete', collection_item_path(item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
                                 <% end %>
                                 <% else %>
-                                <%= link_to 'view', collection_item_path(:collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'view', user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'delete', user_collection_item_path(params[:user_id], item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
                                 <% end %>
                             </div>
                     </div>

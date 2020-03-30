@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
     end 
 
     def create
-        @comment = Comment.new(comment_params.merge(item_id: $item, name: current_user.name))
+        @comment = Comment.new(comment_params.merge(item_id: params[:id], name: current_user.name))
         if @comment.save
-            redirect_to item_path($item)
+            redirect_to collection_item_path(params[:id])
         else
             render 'new'
         end

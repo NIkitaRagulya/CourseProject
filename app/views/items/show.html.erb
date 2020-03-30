@@ -5,7 +5,7 @@
 <% if user_signed_in? %>
 Comments:
 <hr>
-<%= form_for :comment, url:comments_path do |comment| %>
+<%= form_for :comment, url:comments_path(params[:id]) do |comment| %>
 <%= comment.text_field :description, class: "form-control" %><br />
 <p>
     <%= comment.submit({:class => 'btn btn-success'}) %>
