@@ -2,7 +2,11 @@
 <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
         <div class="col-4 pt-1">
+        <% if params[:user_id].nil? %>
         <span><%= link_to 'new collection', new_collection_path, class: 'col-4 pt-1 text-muted' %></span>
+        <% else %>
+        <span><%= link_to 'new collection', admin_new_user_collections_path, class: 'col-4 pt-1 text-muted' %></span>
+        <% end %>
         </div>
         <div class="col-4 text-center">
         <h2><a class="blog-header-logo text-dark" href="/collections">Collections</a></h2>
@@ -26,9 +30,15 @@
                         <p class="card-text"><%= collection.name %></p>
                         <p class="card-text"><%= collection.description %></p><br />
                             <div class="btn-group">
+                                <% if params[:user_id].nil? %>
                                 <%= link_to 'view', collection_items_path(collection), class: 'btn btn-success' %>
                                 <%= link_to 'edit', edit_collection_path(collection), class: 'btn btn-success' %>
                                 <%= link_to 'delete', collection_path(collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% else %>
+                                <%= link_to 'view', user_collection_items_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'edit', admin_edit_user_collection_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'delete', user_collection_path(collection.user_id, collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% end %>
                             </div>
                     </div>
                 </div>

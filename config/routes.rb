@@ -18,12 +18,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :user do
+  resources :users do
+    member do
+      get :index
+    end
     resources :collections do
-      collection do
-        get :admin_index
+      member do
+        get :admin_edit
       end
-      resources :items 
+      collection do
+        get :admin_new
+      end
+      resources :items
     end
   end
 
