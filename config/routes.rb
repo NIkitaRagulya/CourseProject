@@ -39,8 +39,9 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :collections do
-    resources :items
+    resources :items do
+      resources :comments 
+    end
   end
-  resources :comments
 
 end
