@@ -72,11 +72,13 @@ class CollectionsController < ApplicationController
     if params[:user_id].nil?
       @collection = Collection.for_user(current_user).find(params[:id])
       @collection.destroy
+      Item.where(collection_id: @collection.id).delete_all
       redirect_to collections_path
     else
       @user = User.find(params[:user_id])
       @collection = Collection.for_user(@user).find(params[:id])
       @collection.destroy
+      Item.where(collection_id: @collection.id).delete_all
       redirect_to user_collections_path
     end
   end

@@ -12,7 +12,7 @@
 </div>
 <div class="form-group">
     <label>Topic</label>
-    <%= f.select(:topic, [['Lisbon', 1], ['Madrid', 2], ['Berlin', 3]]) %>
+    <%= f.select(:topic, raw('<option value="Books">Books</option><option value="Alcohol">Alcohol</option><option value="Nature">Nature</option>')) %>
 </div>
 <div class="form-group">
     <label>Description</label>
