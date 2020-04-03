@@ -1,0 +1,39 @@
+<h1>Search results</h1>
+<div class="album py-5">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-10 order-md-1">
+        <div class="row">
+            <% @items.each do |item| %>
+            <div class="col-md-4 mb-3">
+                <div class="card mb-4 shadow-sm">
+                    <%= image_tag item.feature_image if item.feature_image.present? %>
+                    <div class="card-body">
+                        <p class="card-text"><%= item.name %></p>
+                        <p class="card-text"><%= item.description %></p><br />
+                            <div class="btn-group">
+                                <% if params[:user_id].nil? %>
+                                <% if item.user_id != current_user.id%>
+                                <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                                <% else %>
+                                <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'delete', collection_item_path(item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% end %>
+                                <% else %>
+                                <%= link_to 'view', user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'delete', user_collection_item_path(params[:user_id], item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% end %>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        </div>
+        <div class="col-md-2 order-md-2 mb-4">
+        </div>
+        </div>
+    </div>
+</div>
