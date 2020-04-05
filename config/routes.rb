@@ -36,7 +36,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts
     resources :collections do
       resources :items do
         resources :comments 
