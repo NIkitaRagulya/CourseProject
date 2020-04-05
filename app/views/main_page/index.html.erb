@@ -1,20 +1,61 @@
+</div>
 <div class="album py-5">
     <div class="container">
         <div class="row">
+        <div class="col-md-6 order-md-1">
+        <h2>Last created collections</h2>
+        <div class="row" id="main">
             <% @collections.each do |collection| %>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <%= image_tag collection.feature_image if collection.feature_image.present? %>
                     <div class="card-body">
                         <p class="card-text"><%= collection.name %></p>
                         <p class="card-text"><%= collection.description %></p><br />
-                        <div class="btn-group">
-                            <%= link_to 'view', collection_items_path(collection), class: 'btn btn-success' %>
-                        </div>
+                            <div class="btn-group">
+                                <% if params[:user_id].nil? %>
+                                <%= link_to 'view', collection_items_path(collection), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_collection_path(collection), class: 'btn btn-success' %>
+                                <%= link_to 'delete', collection_path(collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% else %>
+                                <%= link_to 'view', user_collection_items_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'edit', admin_edit_user_collection_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'delete', user_collection_path(collection.user_id, collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% end %>
+                            </div>
                     </div>
                 </div>
             </div>
             <% end %>
+        </div>
+        </div>
+        <div class="col-md-6 order-md-2 mb-4">
+        <h2>Largest number of items</h2>
+        <div class="row" id="mainitems">
+            <% @collections1.each do |collection| %>
+            <div class="col-md-6">
+                <div class="card mb-4 shadow-sm">
+                    <%= image_tag collection.feature_image if collection.feature_image.present? %>
+                    <div class="card-body">
+                        <p class="card-text"><%= collection.name %></p>
+                        <p class="card-text"><%= collection.description %></p><br />
+                            <div class="btn-group">
+                                <% if params[:user_id].nil? %>
+                                <%= link_to 'view', collection_items_path(collection), class: 'btn btn-success' %>
+                                <%= link_to 'edit', edit_collection_path(collection), class: 'btn btn-success' %>
+                                <%= link_to 'delete', collection_path(collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% else %>
+                                <%= link_to 'view', user_collection_items_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'edit', admin_edit_user_collection_path(collection.user_id, collection), class: 'btn btn-success' %>
+                                <%= link_to 'delete', user_collection_path(collection.user_id, collection), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
+                                <% end %>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        </div>
         </div>
     </div>
 </div>

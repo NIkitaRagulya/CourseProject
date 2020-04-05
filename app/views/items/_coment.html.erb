@@ -1,0 +1,17 @@
+Comments:
+<hr>
+<%= form_for :comment, url:collection_item_comments_path(@item.collection_id, @item.id), remote: true do |comment| %>
+    <%= comment.text_field :description, class: "form-control" %><br />
+    <p>
+        <%= comment.submit({class: 'btn btn-success'}) %>
+    </p>
+    <hr>
+    <div id = "comments">
+        <% @comments.each do |comment| %>
+            <div class='container'>
+                <strong><%= comment.name %>:</strong>
+                <%= comment.description %>
+            </div>
+        <% end %>
+    </div>
+<%end%>

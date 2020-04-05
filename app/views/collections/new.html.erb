@@ -11,22 +11,39 @@
     <%= f.text_field(:name, {class: 'form-control'}) %>
 </div>
 <div class="form-group">
-    <label>Topic</label>
-    <%= f.select(:topic, raw('<option value="Books">Books</option><option value="Alcohol">Alcohol</option><option value="Nature">Nature</option>')) %>
+    <label>Topic</label><br />
+    <%= f.select(:topic, raw('<option value="Books">Books</option><option value="Alcohol">Alcohol</option><option value="Nature">Nature</option>'), {}, {class: 'form-control'}) %>
 </div>
 <div class="form-group">
     <label>Description</label>
     <%= f.text_area(:description, {class: 'form-control', placeholder: "380 characters maximum"})%>
 </div>
-<div class="mb-6">
-    <%= f.label :feature_image, class: "label" %>
-    <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
-      <%= f.file_field :feature_image, direct_upload: true, data: { target: 'dropzone.input' } %>
-      <div class="dropzone-msg dz-message needsclick text-gray-600">
-        <h3 class="dropzone-msg-title text-muted">Drag here to upload or click here to browse</h3>
-        <span class="dropzone-msg-desc text-sm text-muted">2 MB file size maximum. Allowed file types png, jpg.</span>
+<div class="form-group">
+  <label>Each item has:</label><br />
+  <div class="form-check form-check-inline">
+    <%= check_box_tag "author", @collection.id, false, class: "form-check-input" %>
+    <%= label_tag 'author', "Author", class: "form-check-label" %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= check_box_tag "year_of_publishing", @collection.id, false, class: "form-check-input" %>
+    <%= label_tag 'year_of_publishing', "Year of publishing", class: "form-check-label" %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= check_box_tag "brand", @collection.id, false, class: "form-check-input" %>
+    <%= label_tag 'brand', "Brand", class: "form-check-label" %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="mb-6">
+      <%= f.label :feature_image, class: "label" %>
+      <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
+        <%= f.file_field :feature_image, direct_upload: true, data: { target: 'dropzone.input' } %>
+        <div class="dropzone-msg dz-message needsclick text-gray-600">
+          <h3 class="dropzone-msg-title text-muted">Drag here to upload or click here to browse</h3>
+          <span class="dropzone-msg-desc text-sm text-muted">2 MB file size maximum. Allowed file types png, jpg.</span>
+        </div>
       </div>
-    </div>
+  </div>
 </div>
 <%= f.submit({class: 'btn btn-success'}) %>
 <% end %>

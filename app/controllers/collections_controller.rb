@@ -27,7 +27,7 @@ class CollectionsController < ApplicationController
   end
 
   def admin_edit
-      @user = User.find(params[:user_id])
+      @user = User.find(params[:auhtor])
       @collection = Collection.for_user(@user).find(params[:id])
   end
 
@@ -52,14 +52,16 @@ class CollectionsController < ApplicationController
 
   def create
     if params[:user_id].nil?
-      @collection = Collection.new(collection_params.merge(user_id: current_user.id))
+      @collection = Collection.new(collection_params.merge(user_id: current_user.id,
+         author: params[:author], brand: params[:brand], year_of_publishing: params[:year_of_publishing]))
       if @collection.save
         redirect_to action: :index
       else
         render 'new'
       end
     else
-      @collection = Collection.new(collection_params.merge(user_id: params[:user_id]))
+      @collection = Collection.new(collection_params.merge(user_id: params[:user_id],
+        author: params[:author], brand: params[:brand], year_of_publishing: params[:year_of_publishing]))
       if @collection.save
         redirect_to user_collections_path
       else
@@ -72,12 +74,18 @@ class CollectionsController < ApplicationController
     if params[:user_id].nil?
       @collection = Collection.for_user(current_user).find(params[:id])
       @collection.destroy
+      Item.where(collection_id: @collection.id) do |item|
+        Tagging.where(item_id: item.id).destroy
+      end
       Item.where(collection_id: @collection.id).delete_all
       redirect_to collections_path
     else
       @user = User.find(params[:user_id])
       @collection = Collection.for_user(@user).find(params[:id])
       @collection.destroy
+      Item.where(collection_id: @collection.id) do |item|
+        Tagging.where(item_id: item.id).destroy
+      end
       Item.where(collection_id: @collection.id).delete_all
       redirect_to user_collections_path
     end

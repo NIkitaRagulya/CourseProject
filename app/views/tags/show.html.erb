@@ -3,5 +3,5 @@
 <% if @tag.items.empty? %>
     <h2>No items</h2>
 <% else %>
-    <%= render @tag.items %>
+    <%= render 'items/item' %>
 <% end %>

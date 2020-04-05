@@ -14,15 +14,40 @@
     <label>Description</label>
     <%= f.text_area(:description, {class: 'form-control', placeholder: "380 characters maximum"})%>
 </div>
-<div class="mb-6">
-    <%= f.label :feature_image, class: "label" %>
-    <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
-      <%= f.file_field :feature_image, direct_upload: true, data: { target: 'dropzone.input' } %>
-      <div class="dropzone-msg dz-message needsclick text-gray-600">
-        <h3 class="dropzone-msg-title text-muted">Drag here to upload or click here to browse</h3>
-        <span class="dropzone-msg-desc text-sm text-muted">2 MB file size maximum. Allowed file types png, jpg.</span>
-      </div>
+<div class="form-group">
+  <% if nil_author %>
+  <% else %>
+    <div class="form-group">
+      <label>Author</label>
+      <%= f.text_area(:author, {class: 'form-control', placeholder: "380 characters maximum"}) %>
     </div>
+  <% end %>
+  <% if nil_brand %>
+  <% else %>
+    <div class="form-group">
+      <label>Brand</label>
+      <%= f.text_area(:brand, {class: 'form-control', placeholder: "380 characters maximum"}) %>
+    </div>
+  <% end %>
+  <% if nil_year_of_publishing %>
+  <% else %>
+    <div class="form-group">
+      <label>Year of publishing</label>
+      <%= f.text_area(:year_of_publishing, {class: 'form-control', placeholder: "380 characters maximum"}) %>
+    </div>
+  <% end %>
+</div>
+<div class="form-group">
+  <div class="mb-6">
+      <%= f.label :feature_image, class: "label" %>
+      <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="2" data-dropzone-max-files="1">
+        <%= f.file_field :feature_image, direct_upload: true, data: { target: 'dropzone.input' } %>
+        <div class="dropzone-msg dz-message needsclick text-gray-600">
+          <h3 class="dropzone-msg-title text-muted">Drag here to upload or click here to browse</h3>
+          <span class="dropzone-msg-desc text-sm text-muted">2 MB file size maximum. Allowed file types png, jpg.</span>
+        </div>
+      </div>
+  </div>
 </div>
 <%= f.submit({class: 'btn btn-success'}) %>
 <% end %>

@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, except: [:index, :create, :new, :admin_new]
+  before_action :set_item, except: [:index, :create, :new, :admin_new, :upvote, :downvote]
 
   def index  
+    @items = Item.where(collection_id: params[:collection_id]).length
     @collection = Collection.find(params[:collection_id])
     @items = Item.for_collection(@collection)
   end
@@ -20,9 +21,19 @@ class ItemsController < ApplicationController
 
   def show
     @comments = Comment.for_item(@item)
+    respond_to do |format|
+      format.json { render json: {data: @comments} }
+      format.html
+    end
+  end
+
+  def comments
+    @comments = Comment.for_item(@item)
+    render json: @comments
   end
 
   def destroy
+    Tagging.where(item_id: @item.id).delete_all
     @item.destroy
     if params[:user_id].nil?
       redirect_to collection_items_path(@item.collection_id)
@@ -36,6 +47,7 @@ class ItemsController < ApplicationController
     if params[:user_id].nil?
       @item = Item.new(item_params.merge(collection_id: @collection.id, user_id: current_user.id))
       if @item.save
+        Collection.update(params[:collection_id], items_quantity: Item.where(collection_id: params[:collection_id]).length)
         redirect_to action: :index
       else
         render 'new'
@@ -43,11 +55,24 @@ class ItemsController < ApplicationController
     else
       @item = Item.new(item_params.merge(collection_id: @collection.id, user_id: params[:user_id]))
       if @item.save
+        Collection.update(params[:collection_id], items_quantity: Item.where(collection_id: params[:collection_id]).length)
         redirect_to user_collection_items_path
       else
         render 'new'
       end
     end
+  end
+
+  def upvote
+    @item = Item.find(params[:id])
+    @item.upvote_from current_user
+    redirect_to action: :index
+  end
+
+  def downvote
+    @item = Item.find(params[:id])
+    @item.downvote_from current_user
+    redirect_to action: :index
   end
 
   private

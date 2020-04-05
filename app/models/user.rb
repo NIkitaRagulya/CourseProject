@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include UserOath
 
+  acts_as_voter
+
   rolify
   after_create :assign_default_role
 

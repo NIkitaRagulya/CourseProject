@@ -10,6 +10,17 @@
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
                         <p class="card-text"><%= item.description %></p><br />
+                        <div class="btn">
+                            <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                <%= item.get_upvotes.size %>
+                            <% end %>
+
+                            <%= link_to unlike_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                <%= item.get_downvotes.size %>
+                            <% end %>
+                        </div>
                             <div class="btn-group">
                                 <% if params[:user_id].nil? %>
                                 <% if item.user_id != current_user.id%>
@@ -32,6 +43,9 @@
         </div>
         </div>
         <div class="col-md-2 order-md-2 mb-4">
+            <% tag_cloud(Tag.counts) do |tag| %>
+                <%= link_to tag.name, tag_path(tag.name) %>
+            <% end %>
         </div>
         </div>
     </div>

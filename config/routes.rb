@@ -41,6 +41,13 @@ Rails.application.routes.draw do
   resources :collections do
     resources :items do
       resources :comments 
+      collection do 
+        get :comments
+      end
+      member do
+        put "like" => "items#upvote"
+        put "unlike" => "items#downvote"
+      end
     end
   end
   resources :tags, only: [:show]

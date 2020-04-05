@@ -20,7 +20,6 @@ $(document).ready(() => {
         user_ids: userIds
       },
       success: (data) => {
-        // console.log(data)
         window.location.reload();
       }
     });
@@ -35,7 +34,6 @@ $(document).ready(() => {
         user_ids: userIds
       },
       success: (data) => {
-        // console.log(data)
         window.location.reload();
       }
     });
