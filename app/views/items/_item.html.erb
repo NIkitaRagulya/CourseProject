@@ -10,18 +10,22 @@
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
                         <p class="card-text"><%= item.description %></p><br />
-                        <div class="btn">
-                            <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
-                                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                <%= item.get_upvotes.size %>
-                            <% end %>
+                        <% if user_signed_in? %>
+                            <div class="btn">
+                                <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <%= item.get_upvotes.size %>
+                                <% end %>
 
-                            <%= link_to unlike_collection_item_path(item.collection_id, item.id), method: :put do %>
-                                <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                                <%= item.get_downvotes.size %>
-                            <% end %>
-                        </div>
+                                <%= link_to unlike_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                    <%= item.get_downvotes.size %>
+                                <% end %>
+                            </div>
+                        <% else %>
+                        <% end %>
                             <div class="btn-group">
+                            <% if user_signed_in? %>
                                 <% if params[:user_id].nil? %>
                                 <% if item.user_id != current_user.id%>
                                 <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
@@ -35,6 +39,9 @@
                                 <%= link_to 'edit', edit_user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
                                 <%= link_to 'delete', user_collection_item_path(params[:user_id], item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
                                 <% end %>
+                            <% else %>
+                                 <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
+                            <% end %>
                             </div>
                     </div>
                 </div>

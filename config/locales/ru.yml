@@ -1,0 +1,20 @@
+ru:
+  main_page:
+      index:
+        title1: 'Последние добавленные айтемы'
+        title2: 'Наибольшее количество айтемов'
+  layouts:
+    application:
+      signout: 'Выйти'
+      signin: 'Войти'
+      registration: 'Регистрация'
+      or: 'или'
+      menu: 'Меню'
+      search: 'Поиск'
+      adminpanel: 'Админ. панель'
+      mainpage: 'Главная страница'
+      profile: 'Профиль'
+  views:
+    collections:
+      index: 'новая коллекция'
+      collections: 'Коллекции'

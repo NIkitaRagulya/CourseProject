@@ -1,0 +1,32 @@
+ru:
+  activerecord:
+    models:
+    collection: 'Коллекия'
+    item: 'Айтем'
+    user: 'Пользователь'
+    comment: 'Коментарий'
+    tag: 'Тег'
+    attributes: 
+      collection:
+        name: 'Название'
+        description: 'Описание'
+        topic: 'Тема'
+        feature_image: 'Изображение'
+        author: 'Автор'
+        year_of_publishing: 'Год издания'
+        brand: 'Бренд'
+      item:
+        name: 'Название'
+        description: 'Описание'
+        feature_image: 'Изображение'
+        author: 'Автор'
+        year_of_publishing: 'Год издания'
+        brand: 'Бренд'
+      user:
+        name: 'Имя'
+        email: 'Почта'
+        password: 'Пароль'
+        remember_me: 'Запомнить меня'
+    errors:
+      messages: 
+        blank: 'не может быть пустым'

@@ -25,9 +25,7 @@
             Menu
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Posts", posts_path, class: 'dropdown-item'  %>
             <% if current_user && current_user.has_role?(:admin) %>
-            <%= link_to "Add post", new_post_path, class: "dropdown-item" %>
             <%= link_to "Admin panel", online_users_path, class: 'dropdown-item'  %>
             <% else %>
             <% end %>
