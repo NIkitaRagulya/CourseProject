@@ -20,7 +20,7 @@
                     <% end %>
                     <div class="card-body">
                         <p class="card-text"><%= collection.name %></p>
-                        <p class="card-text"><%= collection.description %></p><br />
+                        <p class="card-text"><%= markdown(collection.description) %></p><br />
                             <div class="btn-group">
                                 <%= link_to 'view', collection_items_path(collection), class: 'btn btn-success' %>
                             </div>
@@ -43,7 +43,7 @@
                     <% end %>
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
-                        <p class="card-text"><%= item.description %></p><br />
+                        <p class="card-text"><%= markdown(item.description) %></p><br />
                         <% if user_signed_in? %>
                             <div class="btn">
                                 <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
