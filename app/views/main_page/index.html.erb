@@ -14,7 +14,7 @@
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <% if collection.feature_image.present? %>
-                        <%= image_tag collection.feature_image, size: "245x160" %>
+                        <%= image_tag collection.feature_image, id: "image" %>
                     <% else %>
                         <div id="image"></div>
                     <% end %>
@@ -37,7 +37,7 @@
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
                     <% if item.feature_image.present? %>
-                        <%= image_tag item.feature_image, size: "245x160" %>
+                        <%= image_tag item.feature_image, id: "image" %>
                     <% else %>
                         <div id="image"></div>
                     <% end %>

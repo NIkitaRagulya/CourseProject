@@ -1,5 +1,8 @@
 #image {
-    width: 245px; 
+    max-width: 245px;
     height: 160px;
     background: #C0C0C0;
+}
+#image {
+    max-width: 100%;
 }
