@@ -2,7 +2,7 @@
     <h1><%= @item.name %></h1>
     <p class="lead"><%= @item.description %></p>
 </div>
-<%= raw @item.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-primary' }.join(' ') %>
+<%= raw @item.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'badge badge-primary' }.join(' ') %><br /><br />
 <% if user_signed_in? %>
     <%= render 'coment' %>
 <% else %>

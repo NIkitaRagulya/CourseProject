@@ -1,8 +1,0 @@
-<h1>Posts</h1>
-<% @posts.each do |post| %>
-<div id="div1" class = "alert alert-light">
- <h3 ><%= post.title %></h3>
- <p id="p1" ><%= post.body %></p>
- <%= link_to "view", post_path(post), class: 'btn btn-primary' %>
- </div>
-<% end %>

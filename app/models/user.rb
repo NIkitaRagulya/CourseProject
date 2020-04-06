@@ -6,7 +6,6 @@ class User < ApplicationRecord
   rolify
   after_create :assign_default_role
 
-  has_many :posts
   has_many :collections
 
   ONLINE_PERIOD = 1.minutes
@@ -36,5 +35,8 @@ class User < ApplicationRecord
 
   validates :email,    presence: true
   validates :password, presence: true
+
+  validates :name, length: { maximum: 30,
+    too_long: "%{count} characters is the maximum allowed" }
 
 end

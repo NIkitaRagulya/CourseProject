@@ -13,7 +13,11 @@
             <% @collections.each do |collection| %>
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
-                    <%= image_tag collection.feature_image if collection.feature_image.present? %>
+                    <% if collection.feature_image.present? %>
+                        <%= image_tag collection.feature_image, size: "245x160" %>
+                    <% else %>
+                        <div id="image"></div>
+                    <% end %>
                     <div class="card-body">
                         <p class="card-text"><%= collection.name %></p>
                         <p class="card-text"><%= collection.description %></p><br />
@@ -32,7 +36,11 @@
             <% @items.each do |item| %>
             <div class="col-md-6">
                 <div class="card mb-4 shadow-sm">
-                    <%= image_tag item.feature_image if item.feature_image.present? %>
+                    <% if item.feature_image.present? %>
+                        <%= image_tag item.feature_image, size: "245x160" %>
+                    <% else %>
+                        <div id="image"></div>
+                    <% end %>
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
                         <p class="card-text"><%= item.description %></p><br />

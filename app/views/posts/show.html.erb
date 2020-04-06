@@ -1,9 +1,0 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-<hr>
-<% if user_signed_in? %>
-<%= link_to "edit", edit_post_path(@post), :class => 'btn btn-primary' %>
-<%= link_to "destroy", post_path(@post), method: :delete, data: {confirm: "Do you want to delete the post?"},
- :class => 'btn btn-primary' %>
- <% else %>
- <% end %>
