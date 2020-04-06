@@ -1,3 +1,8 @@
+<div class="container">
+    <h2>All tags</h2>
+    <% tag_cloud(Tag.counts) do |tag| %>
+        <%= link_to tag.name, tag_path(tag.name) %>
+    <% end %>
 </div>
 <div class="album py-5">
     <div class="container">
