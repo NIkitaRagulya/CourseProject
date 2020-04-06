@@ -27,7 +27,7 @@ class CollectionsController < ApplicationController
   end
 
   def admin_edit
-      @user = User.find(params[:auhtor])
+      @user = User.find(params[:user_id])
       @collection = Collection.for_user(@user).find(params[:id])
   end
 

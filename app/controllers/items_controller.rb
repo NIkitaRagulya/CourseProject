@@ -19,6 +19,28 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def admin_edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    if params[:user_id].nil?
+      @item = Item.find(params[:id])
+      if @item.update(item_params)
+        redirect_to collection_items_path
+       else
+        render 'edit'
+       end
+    else
+      @item = Item.find(params[:id])
+      if @item.update(item_params)
+        redirect_to user_collection_items_path
+       else
+        render 'edit'
+       end
+    end
+  end
+
   def show
     @comments = Comment.for_item(@item)
     respond_to do |format|

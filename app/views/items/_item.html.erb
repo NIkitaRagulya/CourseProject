@@ -36,7 +36,7 @@
                                 <% end %>
                                 <% else %>
                                 <%= link_to 'view', user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
-                                <%= link_to 'edit', edit_user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
+                                <%= link_to 'edit', admin_edit_user_collection_item_path(params[:user_id], item.collection_id, item), class: 'btn btn-success' %>
                                 <%= link_to 'delete', user_collection_item_path(params[:user_id], item.collection_id, item), method: :delete, data: {confirm: "Do you want to delete the collection?"}, class: 'btn btn-success' %>
                                 <% end %>
                             <% else %>

@@ -32,6 +32,9 @@ Rails.application.routes.draw do
           collection do
             get :admin_new
           end
+          member do
+            get :admin_edit
+          end
         end
       end
     end
