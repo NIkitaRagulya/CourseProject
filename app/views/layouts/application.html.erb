@@ -31,6 +31,10 @@
             <% end %>
             <%= link_to "Main page", home_path, class: 'dropdown-item'  %>
             <%= link_to "Profile", collections_path, class: 'dropdown-item'  %>
+            <div class='dropdown-item'>
+              <%= link_to "Рус", { locale: :ru } %>
+              <%= link_to "En", { locale: :en } %>
+            </div>
           </div>
         </div>
       </nav>
