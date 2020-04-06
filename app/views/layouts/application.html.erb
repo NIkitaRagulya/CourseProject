@@ -11,26 +11,26 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-bold">
           <% if user_signed_in? %>
-            <span ><%= link_to "Sign out", destroy_user_session_path, class: 'button' %></span>
+            <span ><%= link_to I18n.t('layouts.application.signout'), destroy_user_session_path, class: 'button' %></span>
           <% else %>
-            <span ><%= link_to 'Sign in', new_user_session_path, class: 'button' %></span>
+            <span ><%= link_to I18n.t('layouts.application.signin'), new_user_session_path, class: 'button' %></span>
             or
-            <span ><%= link_to 'Registration', new_user_registration_path, class: 'button' %></span>
+            <span ><%= link_to I18n.t('layouts.application.registration'), new_user_registration_path, class: 'button' %></span>
           <% end %>
       </h5>
      
       <nav class="my-2 my-md-0 mr-md-3">
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
+            <%= I18n.t("views.collections.collections") %>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if current_user && current_user.has_role?(:admin) %>
-            <%= link_to "Admin panel", online_users_path, class: 'dropdown-item'  %>
+            <%= link_to link_to I18n.t('layouts.application.adminpanel'), online_users_path, class: 'dropdown-item'  %>
             <% else %>
             <% end %>
-            <%= link_to "Main page", home_path, class: 'dropdown-item'  %>
-            <%= link_to "Profile", collections_path, class: 'dropdown-item'  %>
+            <%= link_to link_to I18n.t('layouts.application.mainpage'), home_path, class: 'dropdown-item'  %>
+            <%= link_to link_to I18n.t('layouts.application.profile'), collections_path, class: 'dropdown-item'  %>
             <div class='dropdown-item'>
               <%= link_to "Рус", { locale: :ru } %>
               <%= link_to "En", { locale: :en } %>

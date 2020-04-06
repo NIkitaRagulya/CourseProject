@@ -34,6 +34,7 @@ en:
       index:
         title1: 'Last added items'
         title2: 'Biggest number of items'
+        alltags: 'All tags'
   layouts:
     application:
       signout: 'Sign out'

@@ -5,7 +5,7 @@
         <% if params[:user_id].nil? %>
         <span><%= link_to I18n.t("views.collections.index"), new_collection_path, class: 'col-4 pt-1 text-muted' %></span>
         <% else %>
-        <span><%= link_to I18n.t("views.collections.index"), admin_new_user_collections_path, class: 'col-4 pt-1 text-muted' %></span>
+        <span><%= link_to I18n.t("views.collections.collections"), admin_new_user_collections_path, class: 'col-4 pt-1 text-muted' %></span>
         <% end %>
         </div>
         <div class="col-4 text-center">

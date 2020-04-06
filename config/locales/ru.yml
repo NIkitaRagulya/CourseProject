@@ -3,6 +3,7 @@ ru:
       index:
         title1: 'Последние добавленные айтемы'
         title2: 'Наибольшее количество айтемов'
+        alltags: 'Все теги'
   layouts:
     application:
       signout: 'Выйти'
