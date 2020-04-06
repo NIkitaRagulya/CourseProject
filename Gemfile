@@ -8,6 +8,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'acts_as_votable'
+gem "redcarpet"
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

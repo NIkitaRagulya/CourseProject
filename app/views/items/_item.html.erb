@@ -9,7 +9,7 @@
                     <%= image_tag item.feature_image if item.feature_image.present? %>
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
-                        <p class="card-text"><%= item.description %></p><br />
+                        <p class="card-text"><%= markdown(item.description) %></p><br />
                         <% if user_signed_in? %>
                             <div class="btn">
                                 <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
