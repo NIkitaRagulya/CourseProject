@@ -88,13 +88,21 @@ class ItemsController < ApplicationController
   def upvote
     @item = Item.find(params[:id])
     @item.upvote_from current_user
-    redirect_to action: :index
+    if params[:collection_id].nil?
+      redirect_to action: :index
+    else
+      redirect_to home_path
+    end
   end
 
   def downvote
     @item = Item.find(params[:id])
     @item.downvote_from current_user
-    redirect_to action: :index
+    if params[:collection_id].nil?
+      redirect_to action: :index
+    else
+      redirect_to home_path
+    end
   end
 
   private

@@ -31,6 +31,20 @@
                     <div class="card-body">
                         <p class="card-text"><%= item.name %></p>
                         <p class="card-text"><%= item.description %></p><br />
+                        <% if user_signed_in? %>
+                            <div class="btn">
+                                <%= link_to like_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <%= item.get_upvotes.size %>
+                                <% end %>
+
+                                <%= link_to unlike_collection_item_path(item.collection_id, item.id), method: :put do %>
+                                    <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                    <%= item.get_downvotes.size %>
+                                <% end %>
+                            </div>
+                        <% else %>
+                        <% end %>
                             <div class="btn-group">
                                 <%= link_to 'view', collection_item_path(item.collection_id, item), class: 'btn btn-success' %>
                             </div>
